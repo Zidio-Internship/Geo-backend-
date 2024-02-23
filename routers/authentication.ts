@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router, Request, Response } from "express";
 import passport from "passport";
 
 const router = Router();
@@ -6,17 +6,29 @@ const router = Router();
 router.get(
   "/auth/facebook",
   passport.authenticate("facebook", {
-    scope: ["user_friends", "manage_pages"],
+    scope: "email",
   })
 );
 
-
 router.get(
   "/auth/facebook/redirect",
-  passport.authenticate("facebook", { failureRedirect: "/login" }),
-  (req, res) => {
+  passport.authenticate("facebook", {
+    failureRedirect: "/failed",
+    successRedirect: "/home",
+  })
+);
+/*
+Google Redirect */
+router.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["profile"] })
+);
+
+router.get(
+  "/auth/google/callback",
+  passport.authenticate("google", { failureRedirect: "/login" }),
+  (req: Request, res: Response) => {
     res.redirect("/");
   }
 );
-
 export default router;

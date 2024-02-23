@@ -7,8 +7,10 @@ import passport from "passport";
 import externalAuth from "./routers/authentication";
 import { StatusCodes } from "http-status-codes";
 import { facebookAuth } from "./Auth/fb";
+import { GoogleStrategy } from "./Auth/google";
 import session from "express-session";
 const FB = facebookAuth()
+// const google = GoogleStrategy()
 
 const server = express();
 server.use(express.json());
@@ -24,6 +26,7 @@ server.use(logger("dev"));
 server.use(passport.initialize());
 server.use(passport.session());
 passport.use('facebook',FB)
+// passport.use('google',google)
 passport.serializeUser(function (user: any, done: any) {
   done(null, user);
 });
@@ -37,8 +40,11 @@ server.use("/login", externalAuth);
 server.get("/home", (req: Request, res: Response) => {
   res.send("Working").status(StatusCodes.OK)
 });
+server.get("/failed", (req: Request, res: Response) => {
+  res.send("Failed").status(StatusCodes.OK)
+});
 
-const PORT: string | number = 8080 || (process.env.PORT as string);
+const PORT: (string | number) = 8080 || (process.env.PORT as string);
 
 
 

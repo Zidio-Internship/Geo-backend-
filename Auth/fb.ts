@@ -1,11 +1,11 @@
-import passport from "passport";
 import { Strategy as FacebookStrategy } from "passport-facebook";
 export const facebookAuth = () => {
   return new FacebookStrategy(
     {
       clientID: process.env.FACEBOOK_APP_ID as string,
       clientSecret: process.env.FACEBOOK_APP_SECRET as string,
-      callbackURL: "auth/facebook/redirect",
+      callbackURL:
+        "http://localhost:8080/login/auth/facebook/redirect" || process.env.FB_URL,
       profileFields: ["id", "displayName", "photos", "email"],
       enableProof: true,
     },
@@ -16,4 +16,3 @@ export const facebookAuth = () => {
   );
 };
 
-export default passport;
