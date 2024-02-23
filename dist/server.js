@@ -12,9 +12,10 @@ const passport_1 = __importDefault(require("passport"));
 const authentication_1 = __importDefault(require("./routers/authentication"));
 const http_status_codes_1 = require("http-status-codes");
 const fb_1 = require("./Auth/fb");
+const google_1 = require("./Auth/google");
 const express_session_1 = __importDefault(require("express-session"));
 const FB = (0, fb_1.facebookAuth)();
-// const google = GoogleStrategy()
+const google = (0, google_1.GoogleStrategy)();
 const server = (0, express_1.default)();
 server.use(express_1.default.json());
 server.use((0, cors_1.default)());
@@ -27,7 +28,7 @@ server.use((0, morgan_1.default)("dev"));
 server.use(passport_1.default.initialize());
 server.use(passport_1.default.session());
 passport_1.default.use('facebook', FB);
-// passport.use('google',google)
+passport_1.default.use('google', google);
 passport_1.default.serializeUser(function (user, done) {
     done(null, user);
 });

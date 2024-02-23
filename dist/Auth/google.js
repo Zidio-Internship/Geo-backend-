@@ -6,7 +6,7 @@ const GoogleStrategy = () => {
     return new passport_google_oauth20_1.Strategy({
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: "http://www.example.com/auth/google/callback",
+        callbackURL: "http://localhost:8080/login/auth/google/redirect" || process.env.GOOGLE_URL,
     }, function (_accessToken, _refreshToken, profile, done) {
         console.log(profile);
         done(null, profile);
