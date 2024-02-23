@@ -10,7 +10,7 @@ const facebookAuth = () => {
     return new passport_facebook_1.Strategy({
         clientID: process.env.FACEBOOK_APP_ID,
         clientSecret: process.env.FACEBOOK_APP_SECRET,
-        callbackURL: "https://geo-backend.onrender.com/auth/facebook/redirect",
+        callbackURL: "auth/facebook/redirect",
         profileFields: ["id", "displayName", "photos", "email"],
         enableProof: true,
     }, function (accessToken, refreshToken, profile, done) {
