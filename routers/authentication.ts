@@ -3,7 +3,13 @@ import passport from "passport";
 
 const router = Router();
 
-router.get("/auth/facebook", passport.authenticate("facebook"));
+router.get(
+  "/auth/facebook",
+  passport.authenticate("facebook", {
+    scope: ["user_friends", "manage_pages"],
+  })
+);
+
 
 router.get(
   "/auth/facebook/redirect",

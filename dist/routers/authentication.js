@@ -6,7 +6,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const passport_1 = __importDefault(require("passport"));
 const router = (0, express_1.Router)();
-router.get("/auth/facebook", passport_1.default.authenticate("facebook"));
+router.get("/auth/facebook", passport_1.default.authenticate("facebook", {
+    scope: ["user_friends", "manage_pages"],
+}));
 router.get("/auth/facebook/redirect", passport_1.default.authenticate("facebook", { failureRedirect: "/login" }), (req, res) => {
     res.redirect("/");
 });
