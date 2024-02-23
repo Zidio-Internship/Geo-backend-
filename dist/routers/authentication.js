@@ -17,6 +17,6 @@ router.get("/auth/facebook/redirect", passport_1.default.authenticate("facebook"
 Google Redirect */
 router.get("/auth/google", passport_1.default.authenticate("google", { scope: ["profile"] }));
 router.get("/auth/google/redirect", passport_1.default.authenticate("google", { failureRedirect: "/login" }), (req, res) => {
-    res.redirect("/");
+    res.redirect("/home");
 });
 exports.default = router;
