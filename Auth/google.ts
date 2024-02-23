@@ -5,7 +5,7 @@ export const GoogleStrategy = () => {
     {
       clientID: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-      callbackURL: "http://localhost:8080/login/auth/google/redirect" || process.env.GOOGLE_URL as string ,
+      callbackURL:  process.env.GOOGLE_URL as string ,
     },
     function (
       _accessToken: any,
@@ -18,3 +18,4 @@ export const GoogleStrategy = () => {
     }
   );
 };
+// "http://localhost:8080/login/auth/google/redirect" ||

@@ -6,10 +6,11 @@ const GoogleStrategy = () => {
     return new passport_google_oauth20_1.Strategy({
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: "http://localhost:8080/login/auth/google/redirect" || process.env.GOOGLE_URL,
+        callbackURL: process.env.GOOGLE_URL,
     }, function (_accessToken, _refreshToken, profile, done) {
         console.log(profile);
         done(null, profile);
     });
 };
 exports.GoogleStrategy = GoogleStrategy;
+// "http://localhost:8080/login/auth/google/redirect" ||
