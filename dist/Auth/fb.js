@@ -6,7 +6,7 @@ const facebookAuth = () => {
     return new passport_facebook_1.Strategy({
         clientID: process.env.FACEBOOK_APP_ID,
         clientSecret: process.env.FACEBOOK_APP_SECRET,
-        callbackURL: "http://localhost:8080/login/auth/facebook/redirect" || process.env.FB_URL,
+        callbackURL: process.env.FB_URL,
         profileFields: ["id", "displayName", "photos", "email"],
         enableProof: true,
     }, function (accessToken, refreshToken, profile, done) {
@@ -15,3 +15,4 @@ const facebookAuth = () => {
     });
 };
 exports.facebookAuth = facebookAuth;
+//   "http://localhost:8080/login/auth/facebook/redirect" ||

@@ -5,7 +5,7 @@ export const facebookAuth = () => {
       clientID: process.env.FACEBOOK_APP_ID as string,
       clientSecret: process.env.FACEBOOK_APP_SECRET as string,
       callbackURL:
-        "http://localhost:8080/login/auth/facebook/redirect" || process.env.FB_URL as string,
+      process.env.FB_URL as string,
       profileFields: ["id", "displayName", "photos", "email"],
       enableProof: true,
     },
@@ -15,4 +15,4 @@ export const facebookAuth = () => {
     }
   );
 };
-
+//   "http://localhost:8080/login/auth/facebook/redirect" ||
