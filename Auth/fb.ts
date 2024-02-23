@@ -5,7 +5,7 @@ export const facebookAuth = () => {
     {
       clientID: process.env.FACEBOOK_APP_ID as string,
       clientSecret: process.env.FACEBOOK_APP_SECRET as string,
-      callbackURL: "http://localhost:8080/auth/facebook/redirect",
+      callbackURL: "https://geo-backend.onrender.com/auth/facebook/redirect",
       profileFields: ["id", "displayName", "photos", "email"],
       enableProof: true,
     },
