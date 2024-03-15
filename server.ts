@@ -36,7 +36,7 @@ passport.deserializeUser(function (user: any, done) {
 
 });
 
-server.use("/user", externalAuth);
+server.use("/login", externalAuth);
 server.get("/home", (req: Request, res: Response) => {
   res.send("Working").status(StatusCodes.OK)
 });
