@@ -35,7 +35,7 @@ passport_1.default.serializeUser(function (user, done) {
 passport_1.default.deserializeUser(function (user, done) {
     done(null, user);
 });
-server.use("/login", authentication_1.default);
+server.use("/user", authentication_1.default);
 server.get("/home", (req, res) => {
     res.send("Working").status(http_status_codes_1.StatusCodes.OK);
 });
