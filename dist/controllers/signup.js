@@ -19,6 +19,7 @@ async function loginUser(req, res) {
     try {
         const { email } = req.body;
         const details = await (0, hepler_1.login)(email);
+        return res.status(200).json({ message: 'success' });
     }
     catch (e) {
         console.log(e);
