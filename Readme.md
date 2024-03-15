@@ -1,71 +1,65 @@
-
-Certainly! Here's the documentation in plain Markdown format:
+Here's a README documentation for the provided TypeScript file:
 
 ---
 
 # Authentication API Documentation
 
-This repository contains an authentication API built with Node.js and Express.
+This repository contains an authentication API built with Node.js, Express, and Passport.js for OAuth authentication with Facebook and Google.
 
 ## Endpoints
 
-### 1. Signup User
+### 1. Facebook Authentication
 
-**Endpoint:** `POST /signup`
+#### Facebook OAuth Endpoint
 
-**Description:** This endpoint allows users to sign up by providing their email and full name. Upon successful signup, an OTP (One-Time Password) is generated and associated with the user's email.
+- **Endpoint:** `GET /auth/facebook`
+- **Description:** Initiates the Facebook OAuth authentication process.
+- **Redirects to:** Facebook login page with email scope.
 
-**Request Body:**
-```json
-{
-  "email": "user@example.com",
-  "fullname": "John Doe"
-}
-```
+#### Facebook OAuth Redirect Endpoint
 
-**Response:**
-- **Status Code:** 201 (Created)
-- **Body:** `{ "message": "success" }`
+- **Endpoint:** `GET /auth/facebook/redirect`
+- **Description:** Handles the redirection after Facebook OAuth authentication.
+- **Redirects to:** `/home` on successful authentication, `/failed` on failure.
 
-### 2. Login User
+### 2. Google Authentication
 
-**Endpoint:** `POST /login`
+#### Google OAuth Endpoint
 
-**Description:** This endpoint allows users to log in by providing their email. It returns user details if the email is registered.
+- **Endpoint:** `GET /auth/google`
+- **Description:** Initiates the Google OAuth authentication process.
+- **Redirects to:** Google login page with profile scope.
 
-**Request Body:**
-```json
-{
-  "email": "user@example.com"
-}
-```
+#### Google OAuth Redirect Endpoint
 
-**Response:**
-- **Status Code:** 200 (OK)
-- **Body:** User details (if found)
+- **Endpoint:** `GET /auth/google/redirect`
+- **Description:** Handles the redirection after Google OAuth authentication.
+- **Redirects to:** `/home` on successful authentication, `/login` on failure.
 
-### 3. Verify OTP
+### 3. User Authentication
 
-**Endpoint:** `POST /verify-otp`
+#### Login Endpoint
 
-**Description:** This endpoint allows users to verify their OTP (One-Time Password) received during signup.
+- **Endpoint:** `POST /login`
+- **Description:** Allows users to log in using email and password.
+- **Returns:** User details if login is successful.
 
-**Request Body:**
-```json
-{
-  "email": "user@example.com",
-  "otp": "123456"
-}
-```
+#### Signup Endpoint
 
-**Response:**
-- **Status Code:** 200 (OK) if OTP is valid
-- **Status Code:** 404 (Not Found) if OTP is invalid
+- **Endpoint:** `POST /signup`
+- **Description:** Allows users to sign up by providing email and full name.
+- **Returns:** Success message upon successful signup.
+
+#### OTP Verification Endpoint
+
+- **Endpoint:** `POST /verify`
+- **Description:** Allows users to verify their OTP (One-Time Password) received during signup.
+- **Returns:** Success message if OTP is valid, error message if invalid.
 
 ## Error Handling
 
-- If any error occurs during signup, login, or OTP verification, the server returns a 500 (Internal Server Error) status code along with an error message.
+- If any error occurs during authentication, login, signup, or OTP verification, the server returns appropriate error responses along with error messages.
 
 ---
 
-You can copy and paste this Markdown content into your README.md file or any other documentation file. Adjust the formatting as needed for your purposes.
+Feel free to expand this documentation with additional details such as how to set up and run the API, any dependencies required, and any authentication mechanisms used. Additionally, you can include examples of request/response payloads for each endpoint if needed.
