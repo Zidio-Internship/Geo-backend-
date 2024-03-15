@@ -1,4 +1,5 @@
 import { Strategy as FacebookStrategy } from "passport-facebook";
+import { signup } from "../utils/hepler";
 export const facebookAuth = () => {
   return new FacebookStrategy(
     {
@@ -9,10 +10,12 @@ export const facebookAuth = () => {
       profileFields: ["id", "displayName", "photos", "email"],
       enableProof: true,
     },
-    function (accessToken, refreshToken, profile, done) {
+   async function (accessToken, refreshToken, profile, done) {
+	   if (profile){
+		await signup(profile.emails[0].value,profile.displayName,0)
+	   }
       console.log(profile);
       done(null, profile);
     }
   );
 };
-//   "http://localhost:8080/login/auth/facebook/redirect" ||
